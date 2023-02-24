@@ -1,6 +1,5 @@
 /* Chat Container */
 .chatContainer {
-  width: 500px;
   margin: 0 auto;
   padding: 10px;
   border: 1px solid #ccc;
@@ -33,7 +32,7 @@
 }
 
 /* Chat Input */
-#chatInput {
+.chatForm input {
   flex-grow: 1;
   padding: 10px;
   border-radius: 5px;
