@@ -9,3 +9,9 @@ Description: More about what it does (maybe more than one line)
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    DBI,
+    purrr,
+    R6,
+    shiny
+RoxygenNote: 7.2.3

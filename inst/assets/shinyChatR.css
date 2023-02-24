@@ -10,6 +10,8 @@
 /* Chat Messages */
 .chatMessages {
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
   padding: 10px;
   background-color: #f2f2f2;
   border-radius: 5px;

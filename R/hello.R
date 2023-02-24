@@ -12,7 +12,7 @@ df <- data.frame(rowid = numeric(),
                  text = character(),
                  time = double())
 dbWriteTable(con, "me", df, overwrite = TRUE)
-
+saveRDS(df, "message.rds")
 
 
 
@@ -32,8 +32,8 @@ ui <- fluidPage(
 
 server <- function(input, output, server) {
 
-  chat_server("test1")
-  chat_server("test2")
+  chat_server("test1", db_connection = con, db_table_name = "me")
+  chat_server("test2", rds_path = "message.rds" )
 
 }
 
