@@ -37,15 +37,16 @@ chat_ui <- function(id, height = "300px", width = "500px") {
   )
 }
 
-
 #' @title A chat module for Shiny apps
 #'
-#' @description Creates the server logic for the chat module, which handles adding new messages to the database or RDS file, and retrieving messages to display.
-#' @param id Module ID
+#' @description Creates the server logic for the chat module, which handles adding new messages to the database or RDS file, and retrieving messages to display
 #'
+#' @param id The id of the module.
+#' @param chat_user The user name that should be displayed next to the message.
 #' @param db_connection A database connection object, created using the \code{DBI} package. If provided, the chat messages will be stored in a database table.
 #' @param db_table_name he name of the database table to use for storing the chat messages. If \code{db_connection} is provided, this parameter is required.
 #' @param rds_path The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.
+#'
 #' @return the reactive values \code{chat_rv} with all the chat information
 #'
 #' @import shiny
@@ -55,9 +56,11 @@ chat_ui <- function(id, height = "300px", width = "500px") {
 #' @export
 #'
 chat_server <- function(id,
+                        chat_user,
                         db_connection = NULL,
                         db_table_name = NULL,
-                        rds_path = NULL) {
+                        rds_path = NULL
+                        ) {
 
   moduleServer(
     id,
@@ -91,9 +94,11 @@ chat_server <- function(id,
 
       output$chatbox <- renderUI({
         if (nrow(chat_rv$chat)>0) {
-          render_msg_divs(chat_rv$chat$text, chat_rv$chat$user)
+          render_msg_divs(chat_rv$chat$text,
+                          chat_rv$chat$user,
+                          ifelse(is.reactive(chat_user), chat_user(), chat_user))
         } else {
-          tags$span("Empty chat")
+          tags$span(" ")
         }
       })
 
@@ -104,7 +109,7 @@ chat_server <- function(id,
 
       observeEvent(input$chatFromSend, {
 
-        ChatData$insert_message(user = "User1",
+        ChatData$insert_message(user = ifelse(is.reactive(chat_user), chat_user(), chat_user),
                                 message = input$chatInput,
                                 time = Sys.time())
 

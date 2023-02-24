@@ -9,11 +9,11 @@
 #'
 #' @examples
 #'
-#' render_msg_divs(c("hello", "hello"), c("user1", "user2"))
+#' \dontrun{render_msg_divs(c("hello", "hello"), c("user1", "user2"))}
 #'
-#'
-render_msg_divs <- function(texts, users) {
+render_msg_divs <- function(texts, users, act_user) {
   purrr::map2(texts, users,
-              ~ div(class="chatMessage", p(tags$strong(.y), .x))
+              ~ div(class=paste("chatMessage", ifelse(.y == act_user, "me", "")),
+                                p(tags$strong(.y), .x))
           )
 }

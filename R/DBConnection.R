@@ -24,7 +24,7 @@ DBConnection <- R6::R6Class("DBConnection",
                     #' @returns The full dataset
                     #'
                     get_data = function() {
-                      dbGetQuery(self$connection, paste('SELECT * FROM', self$table))
+                      DBI::dbGetQuery(self$connection, paste('SELECT * FROM', self$table))
                     },
                     #' Save a message to data source
                     #'
@@ -33,7 +33,7 @@ DBConnection <- R6::R6Class("DBConnection",
                     #' @param time The time when message was submitted
                     #'
                     insert_message = function(message, user, time) {
-                      dbExecute(self$connection, paste('INSERT INTO', self$table, '(user, text, time)
+                      DBI::dbExecute(self$connection, paste('INSERT INTO', self$table, '(user, text, time)
                                             VALUES (?, ?, ?);'),
                                 list(user, message, time))
                     }

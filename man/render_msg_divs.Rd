@@ -19,7 +19,6 @@ Render the messages for the chat
 }
 \examples{
 
-render_msg_divs(c("hello", "hello"), c("user1", "user2"))
-
+\dontrun{render_msg_divs(c("hello", "hello"), c("user1", "user2"))}
 
 }

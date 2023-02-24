@@ -4,10 +4,18 @@
 \alias{chat_server}
 \title{A chat module for Shiny apps}
 \usage{
-chat_server(id, db_connection = NULL, db_table_name = NULL, rds_path = NULL)
+chat_server(
+  id,
+  chat_user,
+  db_connection = NULL,
+  db_table_name = NULL,
+  rds_path = NULL
+)
 }
 \arguments{
-\item{id}{Module ID}
+\item{id}{The id of the module.}
+
+\item{chat_user}{The user name that should be displayed next to the message.}
 
 \item{db_connection}{A database connection object, created using the \code{DBI} package. If provided, the chat messages will be stored in a database table.}
 
@@ -19,5 +27,5 @@ chat_server(id, db_connection = NULL, db_table_name = NULL, rds_path = NULL)
 the reactive values \code{chat_rv} with all the chat information
 }
 \description{
-Creates the server logic for the chat module, which handles adding new messages to the database or RDS file, and retrieving messages to display.
+Creates the server logic for the chat module, which handles adding new messages to the database or RDS file, and retrieving messages to display
 }
