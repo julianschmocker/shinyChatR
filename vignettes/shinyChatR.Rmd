@@ -2,7 +2,7 @@
 title: "Getting started with shinyChatR"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Getting started with datamods}
+  %\VignetteIndexEntry{Getting started with shinyChatR}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

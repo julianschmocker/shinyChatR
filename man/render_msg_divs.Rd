@@ -10,6 +10,8 @@ render_msg_divs(texts, users, act_user)
 \item{texts}{a character vector with the texts}
 
 \item{users}{a character vector with the users}
+
+\item{act_user}{a character with the current user (that is using the app)}
 }
 \value{
 The HTML code containing the chat messages

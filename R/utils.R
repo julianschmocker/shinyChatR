@@ -2,6 +2,7 @@
 #'
 #' @param texts a character vector with the texts
 #' @param users a character vector with the users
+#' @param act_user a character with the current user (that is using the app)
 #'
 #' @return The HTML code containing the chat messages
 #'

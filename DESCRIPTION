@@ -20,7 +20,10 @@ Imports:
     R6,
     shiny
 RoxygenNote: 7.2.3
+VignetteBuilder: knitr
 Suggests: 
+    knitr,
+    rmarkdown,
     RSQLite,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
