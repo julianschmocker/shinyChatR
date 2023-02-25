@@ -4,7 +4,7 @@ This package provides a reusable chat module for R Shiny apps. The module allows
 
 The messages can either be stored in a database or a rds data. Here is an example of the UI:
 <center>
-![](vignettes/figures/example_chat.png){width=460}
+![](https://github.com/julianschmocker/shinyChatR/blob/master/vignettes/figures/example_chat.png?raw=true){width=460}
 </center>
 
 ## Features
