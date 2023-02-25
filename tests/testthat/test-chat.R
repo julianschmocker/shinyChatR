@@ -21,6 +21,7 @@ test_that("Chat Server with DB works", {
                  data.frame(user = "user1",
                             text = "test_message"))
   })
+  DBI::dbDisconnect(con)
 })
 
 test_that("Chat Server with rds file", {

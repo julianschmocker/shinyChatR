@@ -15,22 +15,30 @@
       
       /* Chat Messages */
       .chatMessages {
+        flex-grow: 1;
         overflow-y: scroll;
         display: flex;
         flex-direction: column-reverse;
-        padding: 10px;
-        background-color: #f2f2f2;
+        padding: 5px;
         border-radius: 5px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
       }
+      
       
       /* Chat Message */
       .chatMessage {
-        margin-bottom: 10px;
-        padding: 10px;
+        margin-bottom: 5px;
+        padding: 5px 5px 1px;
         border-radius: 5px;
-        background-color: #fff;
+        background-color: #eee;
+        clear: both;
         box-shadow: 1px 1px 5px #ccc;
+      }
+      
+       .chatMessage.me {
+        float: right;
+        background-color: #2196f3;
+        color: #fff;
       }
       
       /* Chat Form */
@@ -42,15 +50,16 @@
       /* Chat Input */
       .chatForm input {
         flex-grow: 1;
-        padding: 10px;
+        padding: 5px;
         border-radius: 5px;
         border: 1px solid #ccc;
-        margin-right: 10px;
+        margin-right: 5px;
       }
       
       /* Chat Button */
       .chatForm button {
-        padding: 10px 20px;
+        background-color: #007bff;
+        padding: 10px 10px;
         border-radius: 5px;
         border: none;
         cursor: pointer;
@@ -61,7 +70,7 @@
           </div>
           <form class="chatForm">
             <input type="text" id="test-chatInput" placeholder="Enter message"/>
-            <button id="test-chatFromSend" type="button" class="btn btn-default action-button" style="background-color: #007bc2;&#10;                                        color: #fff;">Send</button>
+            <button class="btn btn-default action-button" id="test-chatFromSend" style="width:70px; background-color: #007bc2;&#10;                                        color: #fff;" type="button">Send</button>
           </form>
         </div>
       </div>

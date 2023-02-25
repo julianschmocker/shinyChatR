@@ -4,7 +4,7 @@
 \alias{render_msg_divs}
 \title{Render the messages for the chat}
 \usage{
-render_msg_divs(texts, users)
+render_msg_divs(texts, users, act_user)
 }
 \arguments{
 \item{texts}{a character vector with the texts}

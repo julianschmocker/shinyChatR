@@ -13,7 +13,7 @@
 #'
 render_msg_divs <- function(texts, users, act_user) {
   purrr::map2(texts, users,
-              ~ div(class=paste("chatMessage", ifelse(.y == act_user, "me", "")),
+              ~ div(class=paste0("chatMessage", ifelse(.y == act_user, " me", "")),
                                 p(tags$strong(.y), .x))
           )
 }

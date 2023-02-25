@@ -21,8 +21,6 @@ ui <- fluidPage(
   )
 )
 
-
-
 server <- function(input, output, server) {
 
   # corresponding server part for id test2

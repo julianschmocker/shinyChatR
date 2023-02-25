@@ -2,14 +2,15 @@
 % Please edit documentation in R/chat.R
 \name{chat_server}
 \alias{chat_server}
-\title{A chat module for Shiny apps}
+\title{A chat module for Shiny apps - server}
 \usage{
 chat_server(
   id,
   chat_user,
   db_connection = NULL,
   db_table_name = NULL,
-  rds_path = NULL
+  rds_path = NULL,
+  invalidateDSMillis = 1000
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ chat_server(
 \item{db_table_name}{he name of the database table to use for storing the chat messages. If \code{db_connection} is provided, this parameter is required.}
 
 \item{rds_path}{The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.}
+
+\item{invalidateDSMillis}{The miliseconds to wait before the data source is read again. The default is 1 second.}
 }
 \value{
 the reactive values \code{chat_rv} with all the chat information

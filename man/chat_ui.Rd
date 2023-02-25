@@ -2,7 +2,7 @@
 % Please edit documentation in R/chat.R
 \name{chat_ui}
 \alias{chat_ui}
-\title{A chat module for Shiny apps}
+\title{A chat module for Shiny apps - UI}
 \usage{
 chat_ui(id, height = "300px", width = "500px")
 }
