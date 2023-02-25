@@ -1,5 +1,5 @@
 
-#' @title A chat module for Shiny apps
+#' @title A chat module for Shiny apps - UI
 #'
 #' @description Creates the user interface for the chat module, which includes a chat message display area, a text input field for entering new messages, and a send button.
 #'
@@ -37,7 +37,7 @@ chat_ui <- function(id, height = "300px", width = "500px") {
   )
 }
 
-#' @title A chat module for Shiny apps
+#' @title A chat module for Shiny apps - server
 #'
 #' @description Creates the server logic for the chat module, which handles adding new messages to the database or RDS file, and retrieving messages to display
 #'
@@ -46,6 +46,7 @@ chat_ui <- function(id, height = "300px", width = "500px") {
 #' @param db_connection A database connection object, created using the \code{DBI} package. If provided, the chat messages will be stored in a database table.
 #' @param db_table_name he name of the database table to use for storing the chat messages. If \code{db_connection} is provided, this parameter is required.
 #' @param rds_path The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.
+#' @param invalidateDSMillis The miliseconds to wait before the data source is read again. The default is 1 second.
 #'
 #' @return the reactive values \code{chat_rv} with all the chat information
 #'
@@ -59,7 +60,8 @@ chat_server <- function(id,
                         chat_user,
                         db_connection = NULL,
                         db_table_name = NULL,
-                        rds_path = NULL
+                        rds_path = NULL,
+                        invalidateDSMillis = 1000
                         ) {
 
   moduleServer(
@@ -94,8 +96,10 @@ chat_server <- function(id,
 
       output$chatbox <- renderUI({
         if (nrow(chat_rv$chat)>0) {
+          # prepare the message elements
           render_msg_divs(chat_rv$chat$text,
                           chat_rv$chat$user,
+                          # check if it is a reactive element or not
                           ifelse(is.reactive(chat_user), chat_user(), chat_user))
         } else {
           tags$span(" ")
@@ -103,7 +107,8 @@ chat_server <- function(id,
       })
 
       observe({
-        invalidateLater(1000)
+        # reload chat data
+        invalidateLater(invalidateDSMillis)
         chat_rv$chat <- ChatData$get_data()
       })
 

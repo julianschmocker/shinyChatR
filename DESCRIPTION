@@ -1,11 +1,16 @@
 Package: shinyChatR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Title: A module for adding a chat to a Shiny app
+Version: 1.0.0
+Authors@R: 
+    c(person(given = "Julian",
+             family = "Schmocker",
+             role = c("aut", "cre", "cph"),
+             email = "julian.schmocker@gmail.com")
+      )
+Description: A module for adding a chat to a Shiny app. Allows
+    users to send messages and view messages from other users. 
+    Messages can be stored in a database or a rds file.
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
