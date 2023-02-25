@@ -12,7 +12,6 @@ Description: A module for adding a chat to a Shiny app. Allows
     users to send messages and view messages from other users. 
     Messages can be stored in a database or a rds file.
 License: GPL (>= 3)
-URL: https://github.com/julianschmocker/shinyChatR
 Encoding: UTF-8
 LazyData: true
 Imports: 
@@ -28,4 +27,4 @@ Suggests:
     RSQLite,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://julianschmocker.github.io/shinyChatR/
+URL: https://github.com/julianschmocker/shinyChatR
