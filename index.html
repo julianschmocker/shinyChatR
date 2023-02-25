@@ -53,7 +53,14 @@
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
-      <ul class="navbar-nav"></ul>
+      <ul class="navbar-nav">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/julianschmocker/shinyChatR/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 
     
@@ -83,7 +90,7 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <p>To use the chat module in your own Shiny app, follow these steps:</p>
 <ol style="list-style-type: decimal">
 <li>Install the package</li>
-<li>Load the package <code><a href="https://julianschmocker.github.io/shinyChatR/">library("shinyChatR")</a></code>
+<li>Load the package <code><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">library("shinyChatR")</a></code>
 </li>
 <li>Initialize the database table or rds file</li>
 <li>Add chat module to the app</li>
@@ -107,7 +114,7 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span>                 time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="st">"chat_data"</span>, <span class="va">df</span><span class="op">)</span></span></code></pre>
 <p>Now you can add the chat module to your app:</p>
-<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://julianschmocker.github.io/shinyChatR/">shinyChatR</a></span><span class="op">)</span></span>
+<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="reference/chat_ui.html">chat_ui</a></span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -134,7 +141,7 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span><span class="va">test_rds</span> <span class="op">&lt;-</span> <span class="st">"path_to_rds_file.rds"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">test_rds</span><span class="op">)</span></span></code></pre>
 <p>Now you can add the chat module to your app:</p>
-<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://julianschmocker.github.io/shinyChatR/">shinyChatR</a></span><span class="op">)</span></span>
+<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
 <span><span class="va">test_rds</span> <span class="op">&lt;-</span> <span class="st">"path_to_rds_file.rds"</span></span>
 <span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
@@ -161,7 +168,14 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"julianschmocker/shinyChatR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
-  </main><aside class="col-md-3"><div class="license">
+  </main><aside class="col-md-3"><div class="links">
+<h2 data-toc-skip>Links</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/julianschmocker/shinyChatR/" class="external-link">Browse source code</a></li>
+</ul>
+</div>
+
+<div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
