@@ -3,7 +3,7 @@ pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
   shinyChatR: shinyChatR.html
-last_built: 2023-02-25T11:07Z
+last_built: 2023-02-25T12:01Z
 urls:
   reference: https://julianschmocker.github.io/shinyChatR/reference
   article: https://julianschmocker.github.io/shinyChatR/articles
