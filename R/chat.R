@@ -29,9 +29,9 @@ chat_ui <- function(id, height = "300px", width = "500px") {
                              placeholder = "Enter message"),
                   actionButton(inputId = ns("chatFromSend"),
                                label = "Send",
+                               width = "70px",
                                style = "background-color: #007bc2;
                                         color: #fff;")
-
         )
     )
   )

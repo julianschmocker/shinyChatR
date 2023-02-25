@@ -19,11 +19,10 @@
 }
 
 
-
 /* Chat Message */
 .chatMessage {
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 5px 5px 1px;
   border-radius: 5px;
   background-color: #eee;
   clear: both;
