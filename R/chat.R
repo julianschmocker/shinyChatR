@@ -46,7 +46,7 @@ chat_ui <- function(id, height = "300px", width = "500px") {
 #' @param db_connection A database connection object, created using the \code{DBI} package. If provided, the chat messages will be stored in a database table.
 #' @param db_table_name he name of the database table to use for storing the chat messages. If \code{db_connection} is provided, this parameter is required.
 #' @param rds_path The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.
-#' @param invalidateDSMillis The miliseconds to wait before the data source is read again. The default is 1 second.
+#' @param invalidateDSMillis The milliseconds to wait before the data source is read again. The default is 1 second.
 #'
 #' @return the reactive values \code{chat_rv} with all the chat information
 #'

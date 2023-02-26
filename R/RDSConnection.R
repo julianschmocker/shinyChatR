@@ -21,7 +21,7 @@ RDSConnection <- R6::R6Class("RDSConnection",
                     get_data = function() {
                       readRDS(file = self$rds_path)
                     },
-                    #' Save a message to datasource
+                    #' Save a message to data source
                     #'
                     #' @param message The message to be stores
                     #' @param user The user who entered the message
