@@ -22,6 +22,7 @@ Imports:
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Suggests: 
+    covr,
     knitr,
     rmarkdown,
     RSQLite,
