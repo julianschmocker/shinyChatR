@@ -1,5 +1,8 @@
 
-#library(shinyChatR)
+library(shinyChatR)
+library(shiny)
+library(DBI)
+library(R6)
 
 # store db as tempfile. Select different path to store db locally
 tempdb <- file.path(tempdir(), "db")
