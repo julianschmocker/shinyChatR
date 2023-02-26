@@ -24,7 +24,7 @@ chat_server(
 
 \item{rds_path}{The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.}
 
-\item{invalidateDSMillis}{The miliseconds to wait before the data source is read again. The default is 1 second.}
+\item{invalidateDSMillis}{The milliseconds to wait before the data source is read again. The default is 1 second.}
 }
 \value{
 the reactive values \code{chat_rv} with all the chat information

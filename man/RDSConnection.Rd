@@ -6,7 +6,7 @@
 \value{
 The full dataset
 
-Save a message to datasource
+Save a message to data source
 }
 \description{
 RDSConnection R6 Class
