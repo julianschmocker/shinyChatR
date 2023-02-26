@@ -70,6 +70,8 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="shinychatr">shinyChatR<a class="anchor" aria-label="anchor" href="#shinychatr"></a>
 </h1></div>
+<!-- badges: start -->
+
 <p>This package provides a reusable chat module for R Shiny apps. The module allows multiple users to connect to a common chat and send messages to each other in real-time.</p>
 The messages can either be stored in a database or a rds data. Here is an example of the UI:
 <center>
@@ -101,7 +103,8 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <h2 id="database-connection-for-storing-chat-data">Database connection for storing chat data<a class="anchor" aria-label="anchor" href="#database-connection-for-storing-chat-data"></a>
 </h2>
 <p>If you are using a database connection to store the chat messages, you will need to initialize the database table before using the chat module. The following example shows an example how to do this using the <code>DBI</code> and <code>RSQLite</code> packages. Replace <code>db_file</code> with the path to your database file. The data will be saved in the table <code>chat_data</code>.</p>
-<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dbi.r-dbi.org" class="external-link">DBI</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org" class="external-link">RSQLite</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">db_file</span> <span class="op">&lt;-</span> <span class="st">"path_to_your_database_file"</span></span>
@@ -112,9 +115,10 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span>                 user <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                 text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                 time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="st">"chat_data"</span>, <span class="va">df</span><span class="op">)</span></span></code></pre>
+<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="st">"chat_data"</span>, <span class="va">df</span><span class="op">)</span></span></code></pre></div>
 <p>Now you can add the chat module to your app:</p>
-<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="reference/chat_ui.html">chat_ui</a></span><span class="op">(</span><span class="st">"test"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
@@ -126,22 +130,24 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Run the application</span></span>
-<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="rds-file-for-storing-chat-data">RDS file for storing chat data<a class="anchor" aria-label="anchor" href="#rds-file-for-storing-chat-data"></a>
 </h2>
 <p>A similar approach is required for rds data.</p>
-<pre class="{r}"><code><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rowid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rowid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                 user <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                 text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>                 time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># </span></span>
 <span><span class="va">test_rds</span> <span class="op">&lt;-</span> <span class="st">"path_to_rds_file.rds"</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">test_rds</span><span class="op">)</span></span></code></pre>
+<span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">test_rds</span><span class="op">)</span></span></code></pre></div>
 <p>Now you can add the chat module to your app:</p>
-<pre class="{r}"><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
 <span><span class="va">test_rds</span> <span class="op">&lt;-</span> <span class="st">"path_to_rds_file.rds"</span></span>
 <span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
@@ -155,7 +161,7 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span><span class="op">}</span></span>
 <span></span>
 <span><span class="co"># Run the application</span></span>
-<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre>
+<span><span class="fu">shinyApp</span><span class="op">(</span>ui <span class="op">=</span> <span class="va">ui</span>, server <span class="op">=</span> <span class="va">server</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -198,7 +204,12 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/julianschmocker/shinyChatR/actions/workflows/test-coverage.yaml" class="external-link"><img src="https://github.com/julianschmocker/shinyChatR/actions/workflows/test-coverage.yaml/badge.svg" alt="Test coverage"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>
