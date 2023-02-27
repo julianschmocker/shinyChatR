@@ -1,6 +1,6 @@
 Package: shinyChatR
 Type: Package
-Title: R Shiny chat module
+Title: R Shiny Chat Module
 Version: 1.0.0
 Authors@R: 
     c(person(given = "Julian",
