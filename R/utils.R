@@ -8,10 +8,6 @@
 #'
 #' @importFrom purrr map2
 #'
-#' @examples
-#'
-#' \dontrun{render_msg_divs(c("hello", "hello"), c("user1", "user2"))}
-#'
 render_msg_divs <- function(texts, users, act_user) {
   purrr::map2(texts, users,
               ~ div(class=paste0("chatMessage", ifelse(.y == act_user, " me", "")),

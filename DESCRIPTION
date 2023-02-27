@@ -1,6 +1,6 @@
 Package: shinyChatR
 Type: Package
-Title: A Module for Adding a Chat to a Shiny App
+Title: 'Shiny' Module for Adding a Chat to a Shiny App
 Version: 1.0.0
 Authors@R: 
     c(person(given = "Julian",
@@ -8,7 +8,7 @@ Authors@R:
              role = c("aut", "cre", "cph"),
              email = "julian.schmocker@gmail.com")
       )
-Description: A module for adding a chat to a Shiny app. Allows
+Description: 'Shiny' module for adding a chat to a Shiny app. Allows
     users to send messages and view messages from other users. 
     Messages can be stored in a database or a .rds file.
 License: GPL (>= 3)

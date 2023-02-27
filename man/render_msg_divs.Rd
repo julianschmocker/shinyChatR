@@ -19,8 +19,3 @@ The HTML code containing the chat messages
 \description{
 Render the messages for the chat
 }
-\examples{
-
-\dontrun{render_msg_divs(c("hello", "hello"), c("user1", "user2"))}
-
-}
