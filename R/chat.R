@@ -120,6 +120,7 @@ chat_server <- function(id,
 
         chat_rv$chat <- ChatData$get_data()
 
+        updateTextInput(session, "chatInput", value='')
       })
 
       return(chat_rv)
