@@ -127,9 +127,10 @@ chat_server <- function(id,
 
       observe({
         # reload chat data
-        ##invalidateLater(invalidateDSMillis)
-        ##chat_rv$chat <- ChatData$get_data()
+        #invalidateLater(invalidateDSMillis)
+        #chat_rv$chat <- ChatData$get_data()
         chat_rv$chat <- reactive_chatData()        
+        message("reading chat data...\n")
       })
 
       observeEvent(input$chatFromSend, {
@@ -137,9 +138,7 @@ chat_server <- function(id,
         ChatData$insert_message(user = ifelse(is.reactive(chat_user), chat_user(), chat_user),
                                 message = input$chatInput,
                                 time = Sys.time())
-
-        chat_rv$chat <- ChatData$get_data()
-
+        ## chat_rv$chat <- ChatData$get_data()  ## not needed??
         updateTextInput(session, "chatInput", value='')
       })
 
