@@ -79,6 +79,9 @@ chat_server <- function(id,
       if (sum(!is.null(c(db_connection,rds_path,csv_path,db_file)))>1){
         stop("Either specify only one DB connection, DB file, RDS or CSV path")
       }
+      if(!is.null(db_connection)) {
+        stop("Please use db_file instead of db_connection")
+      }
 
       # initiate data source R6
       if (!is.null(db_connection) || !is.null(db_file)){
@@ -101,6 +104,12 @@ chat_server <- function(id,
         stop("Either 'db_connection', 'rds_path' or 'csv_path' must be specified.")
       }
 
+      ## get non-NULL file
+      data_file <- c(db_file,rds_path,csv_path)[1]
+      reactive_chatData <- shiny::reactiveFileReader(
+        1000, session, data_file, function(f) ChatData$get_data()
+      ) 
+        
       # Add code for sending and receiving messages here
       chat_rv <- reactiveValues(chat = ChatData$get_data())
 
@@ -118,8 +127,9 @@ chat_server <- function(id,
 
       observe({
         # reload chat data
-        invalidateLater(invalidateDSMillis)
-        chat_rv$chat <- ChatData$get_data()
+        ##invalidateLater(invalidateDSMillis)
+        ##chat_rv$chat <- ChatData$get_data()
+        chat_rv$chat <- reactive_chatData()        
       })
 
       observeEvent(input$chatFromSend, {
