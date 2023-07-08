@@ -130,7 +130,6 @@ chat_server <- function(id,
         #invalidateLater(invalidateDSMillis)
         #chat_rv$chat <- ChatData$get_data()
         chat_rv$chat <- reactive_chatData()        
-        message("reading chat data...\n")
       })
 
       observeEvent(input$chatFromSend, {
