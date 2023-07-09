@@ -18,14 +18,14 @@ render_msg_divs <- function(texts, users, act_user) {
 render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
 
   ## detect change of day
-  xtime <- as.POSIXct(time, origin="1970-01-01") 
+  xtime <- as.POSIXct(time, origin="1970-01-01")
   dx  <- diff(as.integer(factor(weekdays(xtime))))
   first_otd <- c(TRUE,dx!=0)  ## first of the day message
   dd <- as.integer(format(xtime, format="%d"))
   if(pretty) {
     date <- paste(weekdays(xtime), dd, months(xtime))
   } else {
-    date <- strftime(xtime)
+    date <- strftime(time)
   }
   now <- strftime(Sys.time())
   today <- substring(now, 1,10)
@@ -35,15 +35,17 @@ render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
 
   formatChat <- function(a) {
     div(
-      div(
-        a['date'], class = paste(
-          'chatTime',
-          ifelse( a['first'], 'first','not-first')
-        )
-      ),    
+      class="row",      
       div(
         class = paste(
-          "chatMessage",
+          'col-12 chatTime',
+          ifelse( a['first'], 'first','not-first')
+        ),
+        a['date'] 
+      ),
+      div(
+        class = paste(
+          "col-12 chatMessage",
           ifelse(a['user'] == act_user,"me", "")
         ),
         span(a['user'], class='chatUser'),
@@ -51,8 +53,10 @@ render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
       )
     )
   }  
+
   chats <- apply(dt, 1, c, simplify=FALSE)
   tags <- lapply(chats, function(a) formatChat(a))
+  ##tags <- unlist(tags,recursive=FALSE)
   message("[render_msg_divs2] done!")
-  tags
+  div( class="container chatInnerContainer", tags)
 }

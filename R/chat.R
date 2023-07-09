@@ -19,8 +19,8 @@ chat_ui <- function(id, title='', height = "300px", width = "500px") {
     includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
     div(class = "chatContainer",
         div(class = "chatTitle", title),
-        div(class = "chatMessages", width = width,
-            style = paste0("height:", height),
+        div(class = "chatMessages", ## width = width,
+            style = paste0("height:", height,";width:",width,";"),
             # Display messages here
             uiOutput(ns("chatbox"))
         ),
