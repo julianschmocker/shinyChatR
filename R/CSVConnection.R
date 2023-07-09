@@ -19,7 +19,8 @@ CSVConnection <- R6::R6Class("CSVConnection",
                         df <- data.frame(
                           user = character(),
                           text = character(),
-                          time = double())
+                          time = double()
+                        )
                         data.table::fwrite(df, csv_path)
                       }
                     },

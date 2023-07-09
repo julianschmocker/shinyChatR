@@ -35,7 +35,7 @@
   background-color: #2196f3;
   color: #fff;
 }
-
+ 
 /* Chat Form */
 .chatForm {
   display: flex;
@@ -58,4 +58,16 @@
   border-radius: 5px;
   border: none;
   cursor: pointer;
+}
+
+.chatUser {
+    text-weight: 600;
+}
+
+.chatTime.first {
+    text-align: center;
+}
+
+.chatTime.not-first {
+    display: none;
 }

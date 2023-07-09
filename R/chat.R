@@ -66,7 +66,8 @@ chat_server <- function(id,
                         db_table_name = "chat_data",
                         rds_path = NULL,
                         csv_path = NULL,                        
-                        invalidateDSMillis = 1000
+                        invalidateDSMillis = 1000,
+                        pretty = TRUE
                         ) {
 
   moduleServer(
@@ -107,7 +108,7 @@ chat_server <- function(id,
       ## get non-NULL file
       data_file <- c(db_file,rds_path,csv_path)[1]
       reactive_chatData <- shiny::reactiveFileReader(
-        1000, session, data_file, function(f) ChatData$get_data()
+        invalidateDSMillis, session, data_file, function(f) ChatData$get_data()
       ) 
         
       # Add code for sending and receiving messages here
@@ -116,10 +117,14 @@ chat_server <- function(id,
       output$chatbox <- renderUI({
         if (nrow(chat_rv$chat)>0) {
           # prepare the message elements
-          render_msg_divs(chat_rv$chat$text,
-                          chat_rv$chat$user,
-                          # check if it is a reactive element or not
-                          ifelse(is.reactive(chat_user), chat_user(), chat_user))
+          render_msg_divs2(
+              chat_rv$chat$text,
+              chat_rv$chat$user,
+              # check if it is a reactive element or not
+              ifelse(is.reactive(chat_user), chat_user(), chat_user),
+              strftime(chat_rv$chat$time),
+              pretty = pretty
+          )
         } else {
           tags$span(" ")
         }
@@ -127,16 +132,16 @@ chat_server <- function(id,
 
       observe({
         # reload chat data
-        #invalidateLater(invalidateDSMillis)
-        #chat_rv$chat <- ChatData$get_data()
         chat_rv$chat <- reactive_chatData()        
       })
 
-      observeEvent(input$chatFromSend, {
+      observeEvent( input$chatFromSend, {
         if(input$chatInput=="") return()
-        ChatData$insert_message(user = ifelse(is.reactive(chat_user), chat_user(), chat_user),
-                                message = input$chatInput,
-                                time = Sys.time())
+        ChatData$insert_message(
+          user = ifelse(is.reactive(chat_user), chat_user(), chat_user),
+          message = input$chatInput,
+          time = strftime(Sys.time())          
+        )
         ## chat_rv$chat <- ChatData$get_data()  ## not needed??
         updateTextInput(session, "chatInput", value='')
       })
