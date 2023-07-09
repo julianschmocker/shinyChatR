@@ -50,7 +50,8 @@ CSVConnection <- R6::R6Class("CSVConnection",
                         user = user,
                         text = message,
                         time = time)
-                      data.table::fwrite(chat_data, file=self$csv_path, append=TRUE)
+                      data.table::fwrite(chat_data, file=self$csv_path,
+                        quote=TRUE, append=TRUE)
                     }
                   )
 )

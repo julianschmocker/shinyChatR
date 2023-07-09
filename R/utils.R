@@ -56,7 +56,5 @@ render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
 
   chats <- apply(dt, 1, c, simplify=FALSE)
   tags <- lapply(chats, function(a) formatChat(a))
-  ##tags <- unlist(tags,recursive=FALSE)
-  message("[render_msg_divs2] done!")
   div( class="container chatInnerContainer", tags)
 }
