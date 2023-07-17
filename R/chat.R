@@ -66,7 +66,8 @@ chat_server <- function(id,
                         db_table_name = "chat_data",
                         rds_path = NULL,
                         csv_path = NULL,                        
-                        invalidateDSMillis = 1000
+                        invalidateDSMillis = 1000,
+                        nlast = 100
                         ) {
 
   moduleServer(
@@ -96,7 +97,7 @@ chat_server <- function(id,
           stop("The dataframe does not have the necessary columns text, user and time")
         }
       } else if (!is.null(csv_path)){
-        ChatData <- CSVConnection$new(csv_path, n=100)
+        ChatData <- CSVConnection$new(csv_path, n=nlast)
         if (!all(c("text", "user", "time") %in% names(ChatData$get_data()))){
           stop("The dataframe does not have the necessary columns text, user and time")
         }
