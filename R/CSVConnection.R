@@ -2,7 +2,9 @@
 #'
 #' An R6 class representing a connection to a CSV file for the chat module.
 #'
+#'
 #' @field  csv_path The path to the CSV file.
+#' @field  nlast The number of messages to be read in and displayed.
 #'
 CSVConnection <- R6::R6Class("CSVConnection",
                   public = list(
@@ -10,8 +12,9 @@ CSVConnection <- R6::R6Class("CSVConnection",
                     nlast = NULL,
                     #' Initialize the R6 Object
                     #'
-                    #' @param rds_path The path to the rds file.
-                    #'
+                    #' @param csv_path The path to the csv file.
+                    #' @param nlast The number of messages to be read-in.
+                    #' @importFrom data.table fwrite setnames fread
                     initialize = function(csv_path, nlast=NULL) {
                       self$csv_path <- csv_path
                       self$nlast <- nlast

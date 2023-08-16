@@ -43,7 +43,7 @@
   background-color: #2196f3;
   color: #fff;
 }
- 
+
 /* Chat Form */
 .chatForm {
   display: flex;
@@ -82,7 +82,8 @@
     text-align: center;
     background-color: aliceblue;
     margin: 20px 0px;
-    padding: 4px;}
+    padding: 4px;
+}
 
 .chatTime.not-first {
     display: none;

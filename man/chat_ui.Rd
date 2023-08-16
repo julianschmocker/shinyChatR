@@ -4,7 +4,7 @@
 \alias{chat_ui}
 \title{A chat module for Shiny apps - UI}
 \usage{
-chat_ui(id, height = "300px", width = "500px")
+chat_ui(id, title = "", height = "300px", width = "100\%")
 }
 \arguments{
 \item{id}{The id of the module}

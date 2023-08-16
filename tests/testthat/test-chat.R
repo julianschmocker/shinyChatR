@@ -41,3 +41,17 @@ test_that("Chat Server with rds file", {
   })
 
 })
+
+
+test_that("Chat Server with csv file", {
+  test_csv <- tempfile(fileext = "csv")
+
+  testServer(chat_server, args = list(csv_path = test_csv,
+                                      chat_user = "user2"), {
+                                        session$setInputs(chatInput = "test_message2", chatFromSend = 20)
+                                        expect_equal(read.csv(test_csv)[, c("user", "text")],
+                                                     data.frame(user = "user2",
+                                                                text = "test_message2"))
+                                      })
+
+})
