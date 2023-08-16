@@ -3,7 +3,7 @@
     Code
       chat_ui("test")
     Output
-      <div>
+      <div width="100%">
         <style type="text/css">/* Chat Container */
       .chatContainer {
         margin: 0 auto;
@@ -13,13 +13,19 @@
         box-shadow: 2px 2px 10px #ccc;
       }
       
+      .chatInnerContainer {
+        width: 100%;
+        margin: auto;
+        padding: 0px 15px 0 10px;
+      }
+      
       /* Chat Messages */
       .chatMessages {
         flex-grow: 1;
-        overflow-y: scroll;
+        overflow-y: auto;
         display: flex;
         flex-direction: column-reverse;
-        padding: 5px;
+        padding: 5px 5px;
         border-radius: 5px;
         margin-bottom: 5px;
       }
@@ -27,8 +33,10 @@
       
       /* Chat Message */
       .chatMessage {
+        float: left;
+        width: auto;
         margin-bottom: 5px;
-        padding: 5px 5px 1px;
+        padding: 2px 10px 2px 5px;
         border-radius: 5px;
         background-color: #eee;
         clear: both;
@@ -37,6 +45,7 @@
       
        .chatMessage.me {
         float: right;
+        margin-left: auto;
         background-color: #2196f3;
         color: #fff;
       }
@@ -63,14 +72,38 @@
         border-radius: 5px;
         border: none;
         cursor: pointer;
+      }
+      
+      .chatUser {
+          font-weight: 600;
+          padding: 0 8px 0 5px;
+      }
+      
+      .chatUser {
+          font-weight: 600;
+          padding: 0 8px 0 5px;
+      }
+      
+      .chatTime.first {
+          text-align: center;
+          background-color: aliceblue;
+          margin: 20px 0px;
+          padding: 4px;
+      }
+      
+      .chatTime.not-first {
+          display: none;
       }</style>
         <div class="chatContainer">
-          <div class="chatMessages" width="500px" style="height:300px">
+          <div class="chatTitle"></div>
+          <div class="chatMessages" style="height:300px">
             <div id="test-chatbox" class="shiny-html-output"></div>
           </div>
           <form class="chatForm">
             <input type="text" id="test-chatInput" placeholder="Enter message"/>
-            <button class="btn btn-default action-button" id="test-chatFromSend" style="width:70px; background-color: #007bc2;&#10;                                        color: #fff;" type="button">Send</button>
+            <button class="btn btn-default action-button" id="test-chatFromSend" style="width:70px; background-color: #007bc2;&#10;                                        color: #fff; height:32px;padding:0px;" type="button">
+              <i class="far fa-paper-plane" role="presentation" aria-label="paper-plane icon"></i>
+            </button>
           </form>
         </div>
       </div>
