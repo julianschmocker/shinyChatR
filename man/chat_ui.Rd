@@ -4,14 +4,16 @@
 \alias{chat_ui}
 \title{A chat module for Shiny apps - UI}
 \usage{
-chat_ui(id, title = "", height = "300px", width = "100\%")
+chat_ui(id, ui_title = "", height = "300px", width = "100\%")
 }
 \arguments{
 \item{id}{The id of the module}
 
+\item{ui_title}{The title of the chat area.}
+
 \item{height}{The height of the chat display area. Default is 300px.}
 
-\item{width}{The width of the chat display area. Default is 500px.}
+\item{width}{The width of the chat display area. Default is 100%.}
 }
 \description{
 Creates the user interface for the chat module, which includes a chat message display area, a text input field for entering new messages, and a send button.

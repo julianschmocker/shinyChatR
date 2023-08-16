@@ -1,24 +1,24 @@
-
 #' @title A chat module for Shiny apps - UI
 #'
 #' @description Creates the user interface for the chat module, which includes a chat message display area, a text input field for entering new messages, and a send button.
 #'
 #' @param id The id of the module
 #' @param height The height of the chat display area. Default is 300px.
-#' @param width The width of the chat display area. Default is 500px.
+#' @param width The width of the chat display area.
+#' @param ui_title The title of the chat area.
 #'
 #' @import shiny
 #'
 #' @export
 #'
-chat_ui <- function(id, title='', height = "300px", width = "100%") {
+chat_ui <- function(id, ui_title='', height = "300px", width = "100%") {
 
   ns <- NS(id)
 
   div(width = width,
     includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
     div(class = "chatContainer",
-        div(class = "chatTitle", title),
+        div(class = "chatTitle", ui_title),
         div(class = "chatMessages",
             style = paste0("height:", height),
             # Display messages here
@@ -48,9 +48,11 @@ chat_ui <- function(id, title='', height = "300px", width = "100%") {
 #' @param chat_user The user name that should be displayed next to the message.
 #' @param db_connection A database connection object, created using the \code{DBI} package. If provided, the chat messages will be stored in a database table.
 #' @param db_table_name he name of the database table to use for storing the chat messages. If \code{db_connection} is provided, this parameter is required.
-#' @param rds_path The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.
+#' @param rds_path The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file.
+#' @param csv_path The path to an csv file to use for storing the chat messages. If provided, the chat messages will be stored in an csv file.
 #' @param invalidateDSMillis The milliseconds to wait before the data source is read again. The default is 1 second.
 #' @param nlast The number of last messages to be read in and displayed
+#' @param pretty Logical that determines if the date should be displayed in a pretty format
 #'
 #' @return the reactive values \code{chat_rv} with all the chat information
 #'

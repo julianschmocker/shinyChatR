@@ -6,7 +6,11 @@ Authors@R:
     c(person(given = "Julian",
              family = "Schmocker",
              role = c("aut", "cre", "cph"),
-             email = "julian.schmocker@gmail.com")
+             email = "julian.schmocker@gmail.com"),
+      person(given= "Ivo",
+             family = "Kwee", 
+             role = "aut",
+             email = "ivo.kwee@gmail.com")
       )
 Description: Provides an easy-to-use module for adding a chat to a Shiny app. Allows
     users to send messages and view messages from other users. 
