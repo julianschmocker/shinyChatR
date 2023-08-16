@@ -11,16 +11,16 @@
 #'
 #' @export
 #'
-chat_ui <- function(id, title='', height = "300px", width = "500px") {
+chat_ui <- function(id, title='', height = "300px", width = "100%") {
 
   ns <- NS(id)
 
-  div(
+  div(width = width,
     includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
     div(class = "chatContainer",
         div(class = "chatTitle", title),
-        div(class = "chatMessages", ## width = width,
-            style = paste0("height:", height,";width:",width,";"),
+        div(class = "chatMessages",
+            style = paste0("height:", height),
             # Display messages here
             uiOutput(ns("chatbox"))
         ),
@@ -30,7 +30,7 @@ chat_ui <- function(id, title='', height = "300px", width = "500px") {
                              placeholder = "Enter message"),
                   actionButton(inputId = ns("chatFromSend"),
                     ##                               label = "Send",
-                               label = NULL,                    
+                               label = NULL,
                                width = "70px",
                                icon = icon("paper-plane"),
                                style = "background-color: #007bc2;
@@ -62,10 +62,9 @@ chat_ui <- function(id, title='', height = "300px", width = "500px") {
 chat_server <- function(id,
                         chat_user,
                         db_connection = NULL,
-                        db_file = NULL,                        
                         db_table_name = "chat_data",
                         rds_path = NULL,
-                        csv_path = NULL,                        
+                        csv_path = NULL,
                         invalidateDSMillis = 1000,
                         pretty = TRUE,
                         nlast = 100
@@ -78,16 +77,13 @@ chat_server <- function(id,
       ns <- session$ns
 
       # data source can only be a db or rds file
-      if (sum(!is.null(c(db_connection,rds_path,csv_path,db_file)))>1){
+      if (sum(!is.null(c(db_connection,rds_path,csv_path)))>1){
         stop("Either specify only one DB connection, DB file, RDS or CSV path")
-      }
-      if(!is.null(db_connection)) {
-        stop("Please use db_file instead of db_connection")
       }
 
       # initiate data source R6
-      if (!is.null(db_connection) || !is.null(db_file)){
-        ChatData <- DBConnection$new(db_connection, db_table_name, db_file)
+      if (!is.null(db_connection)){
+        ChatData <- DBConnection$new(db_connection, db_table_name)
         # check if it contains the necessary variables
         if (!all(c("text", "user", "time") %in% names(ChatData$get_data()))){
           stop("The dataframe does not have the necessary columns text, user and time")
@@ -106,12 +102,14 @@ chat_server <- function(id,
         stop("Either 'db_connection', 'rds_path' or 'csv_path' must be specified.")
       }
 
-      ## get non-NULL file
-      data_file <- c(db_file,rds_path,csv_path)[1]
-      reactive_chatData <- shiny::reactiveFileReader(
-        invalidateDSMillis, session, data_file, function(f) ChatData$get_data()
-      ) 
-        
+      if(is.null(db_connection)){
+        ## get non-NULL file
+        data_file <- c(rds_path,csv_path)[1]
+        reactive_chatData <- shiny::reactiveFileReader(
+          invalidateDSMillis, session, data_file, function(f) ChatData$get_data()
+        )
+      }
+
       # Add code for sending and receiving messages here
       chat_rv <- reactiveValues(chat = ChatData$get_data())
 
@@ -131,17 +129,27 @@ chat_server <- function(id,
         }
       })
 
-      observe({
-        # reload chat data
-        chat_rv$chat <- reactive_chatData()        
-      })
+
+      # for connection regularly check for updates
+      if(!is.null(db_connection)){
+        observe({
+          # reload chat data
+          invalidateLater(invalidateDSMillis)
+          chat_rv$chat <- ChatData$get_data()
+        })
+      } else { # for csv and rds use reactiveFileReader
+        observe({
+          # reload chat data
+          chat_rv$chat <- reactive_chatData()
+        })
+      }
 
       observeEvent( input$chatFromSend, {
         if(input$chatInput=="") return()
         ChatData$insert_message(
           user = ifelse(is.reactive(chat_user), chat_user(), chat_user),
           message = input$chatInput,
-          time = strftime(Sys.time())          
+          time = strftime(Sys.time())
         )
         ## chat_rv$chat <- ChatData$get_data()  ## not needed??
         updateTextInput(session, "chatInput", value='')

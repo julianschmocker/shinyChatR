@@ -3,6 +3,7 @@
 #' An R6 class representing a connection to a CSV file for the chat module.
 #'
 #' @field  csv_path The path to the CSV file.
+#' @importFrom data.table fwrite setnames fread
 #'
 CSVConnection <- R6::R6Class("CSVConnection",
                   public = list(
