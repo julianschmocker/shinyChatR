@@ -13,7 +13,7 @@ chat_ui(id, ui_title = "", height = "300px", width = "100\%")
 
 \item{height}{The height of the chat display area. Default is 300px.}
 
-\item{width}{The width of the chat display area. Default is 100%.}
+\item{width}{The width of the chat display area.}
 }
 \description{
 Creates the user interface for the chat module, which includes a chat message display area, a text input field for entering new messages, and a send button.
