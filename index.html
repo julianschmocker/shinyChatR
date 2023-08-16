@@ -30,7 +30,7 @@
     
     <a class="navbar-brand me-2" href="index.html">shinyChatR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -108,15 +108,8 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rsqlite.r-dbi.org" class="external-link">RSQLite</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">db_file</span> <span class="op">&lt;-</span> <span class="st">"path_to_your_database_file"</span></span>
-<span><span class="va">conn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">db_file</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># initiate chat table</span></span>
-<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>rowid <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">numeric</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                 user <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                 text <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span>                 time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/double.html" class="external-link">double</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dbi.r-dbi.org/reference/dbWriteTable.html" class="external-link">dbWriteTable</a></span><span class="op">(</span><span class="va">conn</span>, <span class="st">"chat_data"</span>, <span class="va">df</span><span class="op">)</span></span></code></pre></div>
-<p>Now you can add the chat module to your app:</p>
+<span><span class="va">conn</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dbi.r-dbi.org/reference/dbConnect.html" class="external-link">dbConnect</a></span><span class="op">(</span><span class="fu">RSQLite</span><span class="fu">::</span><span class="fu"><a href="https://rsqlite.r-dbi.org/reference/SQLite.html" class="external-link">SQLite</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">db_file</span><span class="op">)</span></span></code></pre></div>
+<p>If the table does not yet exist, it will be created in the specified connection. Now you can add the chat module to your app:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
 <span><span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu">fluidPage</span><span class="op">(</span></span>
@@ -145,7 +138,7 @@ The messages can either be stored in a database or a rds data. Here is an exampl
 <span><span class="co"># </span></span>
 <span><span class="va">test_rds</span> <span class="op">&lt;-</span> <span class="st">"path_to_rds_file.rds"</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readRDS.html" class="external-link">saveRDS</a></span><span class="op">(</span><span class="va">df</span>, <span class="va">test_rds</span><span class="op">)</span></span></code></pre></div>
-<p>Now you can add the chat module to your app:</p>
+<p>It is not necessary to initiate the rds file. It will be created if it does not exist. Now you can add the chat module to your app:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/julianschmocker/shinyChatR" class="external-link">shinyChatR</a></span><span class="op">)</span></span>
 <span><span class="va">test_rds</span> <span class="op">&lt;-</span> <span class="st">"path_to_rds_file.rds"</span></span>

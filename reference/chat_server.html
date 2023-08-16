@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">shinyChatR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,9 +58,12 @@
 <span>  <span class="va">id</span>,</span>
 <span>  <span class="va">chat_user</span>,</span>
 <span>  db_connection <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  db_table_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  db_table_name <span class="op">=</span> <span class="st">"chat_data"</span>,</span>
 <span>  rds_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  invalidateDSMillis <span class="op">=</span> <span class="fl">1000</span></span>
+<span>  csv_path <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  invalidateDSMillis <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>  pretty <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  nlast <span class="op">=</span> <span class="fl">100</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -88,6 +91,10 @@
 
 <dt>invalidateDSMillis</dt>
 <dd><p>The milliseconds to wait before the data source is read again. The default is 1 second.</p></dd>
+
+
+<dt>nlast</dt>
+<dd><p>The number of last messages to be read in and displayed</p></dd>
 
 </dl></div>
     <div class="section level2">
