@@ -13,6 +13,14 @@ RDSConnection <- R6::R6Class("RDSConnection",
                     #'
                     initialize = function(rds_path) {
                       self$rds_path <- rds_path
+                      if(!file.exists(rds_path)) {
+                        df <- data.frame(
+                          ## rowid = numeric(),
+                          user = character(),
+                          text = character(),
+                          time = double())
+                        saveRDS(df, rds_path)
+                      }
                     },
                     #' @description Reads the full dataset
                     #'
@@ -29,10 +37,13 @@ RDSConnection <- R6::R6Class("RDSConnection",
                     #'
                     insert_message = function(message, user, time) {
                       prev_chat_data <- readRDS(file = self$rds_path)
-                      chat_data <- rbind(prev_chat_data,
-                                         data.frame(text = message,
-                                                    user = user,
-                                                    time = time))
+                      chat_data <- rbind(
+                        prev_chat_data,
+                        data.frame(
+                          user = user,
+                          text = message,
+                          time = time
+                        ))
                       saveRDS(chat_data, file = self$rds_path)
                     }
                   )

@@ -15,7 +15,18 @@ DBConnection <- R6::R6Class("DBConnection",
                     #' @param connection DB connection
                     #' @param table Table name
                     #'
-                    initialize = function(connection, table) {
+                    initialize = function(connection, table="chat_data", db_file=NULL) {
+                      if(!is.null(db_file)) {
+                        db.exists <- file.exists(db_file)
+                        connection <- DBI::dbConnect(RSQLite::SQLite(), db_file)
+                        if(!db.exists) {
+                          df <- data.frame(
+                            user = character(),
+                            text = character(),
+                            time = double())
+                          DBI::dbWriteTable(connection, table, df)
+                        }
+                      }
                       self$connection <- connection
                       self$table <- table
                     },
@@ -33,9 +44,9 @@ DBConnection <- R6::R6Class("DBConnection",
                     #' @param time The time when message was submitted
                     #'
                     insert_message = function(message, user, time) {
-                      DBI::dbExecute(self$connection, paste('INSERT INTO', self$table, '(user, text, time)
-                                            VALUES (?, ?, ?);'),
-                                list(user, message, time))
+                      DBI::dbExecute(self$connection, paste('INSERT INTO', self$table,
+                        '(user, text, time) VALUES (?, ?, ?);'),
+                        list(user, message, time))
                     }
                   )
 )
