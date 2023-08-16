@@ -50,6 +50,7 @@ chat_ui <- function(id, title='', height = "300px", width = "100%") {
 #' @param db_table_name he name of the database table to use for storing the chat messages. If \code{db_connection} is provided, this parameter is required.
 #' @param rds_path The path to an RDS file to use for storing the chat messages. If provided, the chat messages will be stored in an RDS file instead of a database.
 #' @param invalidateDSMillis The milliseconds to wait before the data source is read again. The default is 1 second.
+#' @param nlast The number of last messages to be read in and displayed
 #'
 #' @return the reactive values \code{chat_rv} with all the chat information
 #'

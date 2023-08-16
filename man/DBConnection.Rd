@@ -42,7 +42,7 @@ Initialize the R6 Object}
 \if{latex}{\out{\hypertarget{method-DBConnection-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{DBConnection$new(connection, table)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{DBConnection$new(connection, table = "chat_data")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

@@ -55,16 +55,10 @@ library(RSQLite)
 
 db_file <- "path_to_your_database_file"
 conn <- dbConnect(RSQLite::SQLite(), db_file)
-
-# initiate chat table
-df <- data.frame(rowid = numeric(),
-                 user = character(),
-                 text = character(),
-                 time = double())
-dbWriteTable(conn, "chat_data", df)
 ```
 
-Now you can add the chat module to your app:
+If the table does not yet exist, it will be created in the specified
+connection. Now you can add the chat module to your app:
 
 ``` r
 library(shinyChatR)
@@ -97,7 +91,8 @@ test_rds <- "path_to_rds_file.rds"
 saveRDS(df, test_rds)
 ```
 
-Now you can add the chat module to your app:
+It is not necessary to initiate the rds file. It will be created if it
+does not exist. Now you can add the chat module to your app:
 
 ``` r
 library(shinyChatR)
