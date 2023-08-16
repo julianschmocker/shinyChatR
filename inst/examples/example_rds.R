@@ -1,20 +1,20 @@
 
 #library(shinyChatR)
 
-# initiate chat data df.
-df <- data.frame(rowid = numeric(),
-                 user = character(),
-                 text = character(),
-                 time = double())
+# # initiate chat data df.
+# df <- data.frame(rowid = numeric(),
+#                  user = character(),
+#                  text = character(),
+#                  time = double())
 
 # save rds file in tempdir. Replace with path to save locally.
-test_rds <- file.path(tempdir(), "data.rds")
-saveRDS(df, test_rds)
+test_rds <- file.path(tempdir(), "data2.rds")
+# saveRDS(df, test_rds)
 
 ui <- fluidPage(
 
   fluidRow(
-    column(width = 12,
+    column(width = 6,
            # add chat ui elements
            chat_ui("test2"),
     )
