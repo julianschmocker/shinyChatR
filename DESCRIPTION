@@ -33,4 +33,4 @@ Suggests:
     RSQLite,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
-URL: https://github.com/julianschmocker/shinyChatR
+URL: https://github.com/julianschmocker/shinyChatR, https://julianschmocker.github.io/shinyChatR/
