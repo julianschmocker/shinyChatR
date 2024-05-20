@@ -14,9 +14,17 @@
 chat_ui <- function(id, ui_title='', height = "300px", width = "100%") {
 
   ns <- NS(id)
-
+  js <- paste0('
+  $(document).on("keyup", function(e) {
+  if(e.keyCode == 13){
+    document.getElementById("', ns("chatFromSend"), '").click();
+  }
+  });')
   div(width = width,
-    includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
+      includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
+      tags$script(HTML(
+        js
+      )),
     div(class = "chatContainer",
         div(class = "chatTitle", ui_title),
         div(class = "chatMessages",
