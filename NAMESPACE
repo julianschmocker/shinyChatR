@@ -2,6 +2,7 @@
 
 export(chat_server)
 export(chat_ui)
+export(updateChatTextInput)
 import(shiny)
 importFrom(DBI,dbExecute)
 importFrom(DBI,dbGetQuery)

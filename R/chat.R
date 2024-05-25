@@ -169,3 +169,27 @@ chat_server <- function(id,
       return(chat_rv)
     })
 }
+
+#' @title A function to update the chat textInput
+#'
+#' @description Updates the value of the chat textInput
+#'
+#' @param session The shiny session.
+#' @param id The id of the module.
+#' @param value The new value that should be shown in the chat textInput.
+#'
+#'
+#' @import shiny
+#'
+#' @export
+#'
+updateChatTextInput <- function(session = getDefaultReactiveDomain(),
+                                id,
+                                value
+) {
+  ns <- NS(id)
+
+  updateTextInput(session = session, inputId = ns("chatInput"), value = value)
+  invisible(ns("chatInput"))
+}
+

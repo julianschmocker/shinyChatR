@@ -94,6 +94,12 @@
       .chatTime.not-first {
           display: none;
       }</style>
+        <script>
+        $(document).on("keyup", function(e) {
+        if(e.keyCode == 13){
+          document.getElementById("test-chatFromSend").click();
+        }
+        });</script>
         <div class="chatContainer">
           <div class="chatTitle"></div>
           <div class="chatMessages" style="height:300px">

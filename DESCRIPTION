@@ -1,7 +1,7 @@
 Package: shinyChatR
 Type: Package
 Title: R Shiny Chat Module
-Version: 1.1.0
+Version: 1.2.0
 Authors@R: 
     c(person(given = "Julian",
              family = "Schmocker",
@@ -24,7 +24,7 @@ Imports:
     purrr,
     R6,
     shiny
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 VignetteBuilder: knitr
 Suggests: 
     covr,
