@@ -14,9 +14,17 @@
 chat_ui <- function(id, ui_title='', height = "300px", width = "100%") {
 
   ns <- NS(id)
-
+  js <- paste0('
+  $(document).on("keyup", function(e) {
+  if(e.keyCode == 13){
+    document.getElementById("', ns("chatFromSend"), '").click();
+  }
+  });')
   div(width = width,
-    includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
+      includeCSS(system.file("assets/shinyChatR.css", package = "shinyChatR")),
+      tags$script(HTML(
+        js
+      )),
     div(class = "chatContainer",
         div(class = "chatTitle", ui_title),
         div(class = "chatMessages",
@@ -161,3 +169,27 @@ chat_server <- function(id,
       return(chat_rv)
     })
 }
+
+#' @title A function to update the chat textInput
+#'
+#' @description Updates the value of the chat textInput
+#'
+#' @param session The shiny session.
+#' @param id The id of the module.
+#' @param value The new value that should be shown in the chat textInput.
+#'
+#'
+#' @import shiny
+#'
+#' @export
+#'
+updateChatTextInput <- function(session = getDefaultReactiveDomain(),
+                                id,
+                                value
+) {
+  ns <- NS(id)
+
+  updateTextInput(session = session, inputId = ns("chatInput"), value = value)
+  invisible(ns("chatInput"))
+}
+

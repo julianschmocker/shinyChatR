@@ -1,3 +1,8 @@
+# shinyChatR 1.2.0
+
+* Added function updateChatTextInput to update the text input field
+* Added functionality that hitting enter automatically submits message
+
 # shinyChatR 1.1.0
 
 * Added option to use csv file to store messages

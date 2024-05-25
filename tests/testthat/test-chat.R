@@ -55,3 +55,16 @@ test_that("Chat Server with csv file", {
                                       })
 
 })
+
+test_that("Test updateChatTextInput", {
+  session <- as.environment(list(
+    ns = "test1",
+    sendInputMessage = function(inputId, message) {
+      session$lastInputMessage = list(id = inputId, message = message)
+    }
+  ))
+  class(session) <- "ShinySession"
+  res <- updateChatTextInput(session = session, id = "test", value = 1)
+  expect_equal(res, "test-chatInput")
+})
+

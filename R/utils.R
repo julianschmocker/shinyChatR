@@ -15,6 +15,18 @@ render_msg_divs <- function(texts, users, act_user) {
           )
 }
 
+#' Render the messages for the chat
+#'
+#' @param texts a character vector with the texts
+#' @param users a character vector with the users
+#' @param act_user a character with the current user (that is using the app)
+#' @param time a datetime object
+#' @param pretty a logical that indicates if it should simplify the date
+#'
+#' @return The HTML code containing the chat messages
+#'
+#' @importFrom purrr map2
+#'
 render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
 
   ## detect change of day
@@ -35,13 +47,13 @@ render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
 
   formatChat <- function(a) {
     div(
-      class="row",      
+      class="row",
       div(
         class = paste(
           'col-12 chatTime',
           ifelse( a['first'], 'first','not-first')
         ),
-        a['date'] 
+        a['date']
       ),
       div(
         class = paste(
@@ -52,7 +64,7 @@ render_msg_divs2 <- function(texts, users, act_user, time, pretty=TRUE) {
         span(a['text'], class='chatText')
       )
     )
-  }  
+  }
 
   chats <- apply(dt, 1, c, simplify=FALSE)
   tags <- lapply(chats, function(a) formatChat(a))
