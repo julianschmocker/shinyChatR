@@ -48,7 +48,7 @@ ui <- fluidPage(
 server <- function(input, output, server) {
   chat_server("test", db_connection = conn,
               db_table_name = "chat_data",
-              chat_user = "user1")
+              chat_user = "user2")
 }
 
 # Run the application

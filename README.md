@@ -16,19 +16,21 @@ messages to each other in real-time.
 The messages can either be stored in a database or a rds data. Here is
 an example of the UI:
 <center>
-<img src="https://github.com/julianschmocker/shinyChatR/blob/master/vignettes/figures/example_chat.png?raw=true" width="460" />
+<img
+src="https://github.com/julianschmocker/shinyChatR/blob/master/vignettes/figures/example_chat2.png?raw=true"
+width="460" />
 </center>
 
 ## Features
 
--   Real-time chat: messages are sent and received in real-time, without
-    the need to refresh the page. It is possible to specify how often
-    the data source should be read.
--   Multiple users: multiple users can connect to the chat room and send
-    messages to each other.
--   Persistent messages: chat messages are stored in a database or rds
-    file, allowing them to be retrieved and viewed even after a user
-    logs out or the app is closed.
+- Real-time chat: messages are sent and received in real-time, without
+  the need to refresh the page. It is possible to specify how often the
+  data source should be read.
+- Multiple users: multiple users can connect to the chat room and send
+  messages to each other.
+- Persistent messages: chat messages are stored in a database or rds
+  file, allowing them to be retrieved and viewed even after a user logs
+  out or the app is closed.
 
 ## General Usage
 
